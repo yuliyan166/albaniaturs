@@ -48,7 +48,6 @@ export const translations = {
       terms: 'Terms',
       contact: 'Contact',
       home: 'Home',
-      digitalEcosystem: 'Digital Ecosystem',
       customerLogin: 'Customer Login',
       partnerPortal: 'Partner Portal',
       adminPortal: 'Admin Portal'
@@ -160,7 +159,6 @@ export const translations = {
       terms: 'Kushtet',
       contact: 'Kontakt',
       home: 'Ballina',
-      digitalEcosystem: 'Digital Ecosystem',
       customerLogin: 'Hyrja e Klientit',
       partnerPortal: 'Portali i Partnerëve',
       adminPortal: 'Portali i Administratorit'
@@ -272,7 +270,6 @@ export const translations = {
       terms: 'Условия',
       contact: 'Контакт',
       home: 'Начало',
-      digitalEcosystem: 'Digital Ecosystem',
       customerLogin: 'Вход за клиент',
       partnerPortal: 'Портал за партньори',
       adminPortal: 'Администраторски портал'
@@ -384,7 +381,6 @@ export const translations = {
       terms: 'Pravidla',
       contact: 'Kontakt',
       home: 'Domů',
-      digitalEcosystem: 'Digital Ecosystem',
       customerLogin: 'Zákaznické přihlášení',
       partnerPortal: 'Portál partnera',
       adminPortal: 'Admin portál'

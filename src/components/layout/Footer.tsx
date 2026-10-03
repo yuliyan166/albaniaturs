@@ -27,15 +27,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Innovation links */}
-        <div className="space-y-6">
-          <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-widest">{t?.footer?.platform || 'Innovation'}</h4>
-          <ul className="space-y-3 text-sm">
-            <li><Link href="/ecosystem" className="hover:text-white transition text-gray-400">{t?.footer?.digitalEcosystem || 'Digital Ecosystem'}</Link></li>
-            <li><Link href="/privacy" className="hover:text-white transition">{t?.footer?.privacy || 'Privacy'}</Link></li>
-          </ul>
-        </div>
-
         {/* Support */}
         <div className="space-y-6">
           <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-widest">{t?.footer?.support || 'Support'}</h4>

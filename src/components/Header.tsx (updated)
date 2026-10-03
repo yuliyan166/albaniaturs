@@ -1,0 +1,20 @@
+import { useLanguage } from '@/app/providers/LanguageContext';
+export const Header: React.FC = () => {
+  const { language, setLanguage } = useLanguage();
+  const toggleLang = () => {
+    const next = language === 'en' ? 'cs' : 'en';
+    setLanguage(next);
+  };
+
+  return (
+    <div className="flex items-center space-x-4">
+      {/* Language Toggle */}
+      <button 
+        onClick={toggleLang} 
+        className="rounded bg-gray-100 px-2 py-1 text-xs font-semibold uppercase transition hover:bg-blue-50"
+      >
+        {language.toUpperCase()}
+      </button>
+    </div>
+  );
+};

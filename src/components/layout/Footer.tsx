@@ -1,69 +1,200 @@
 'use client';
-
 import React from 'react';
 import Link from 'next/link';
-import { useLanguage } from '@/app/providers/LanguageContext';
 
-export default function Footer() {
-  const { t } = useLanguage();
+export const Footer: React.FC = () => {
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-900 text-gray-400 pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
-        {/* Brand */}
-        <div className="space-y-6">
-          <h3 className="text-white text-2xl font-bold">AlbaniaTours</h3>
-          <p className="text-sm leading-relaxed opacity-80">{t?.common?.premiumOption || 'Premium gateway to the hidden gems of Albania.'}</p>
-        </div>
-
-        {/* Platform links */}
-        <div className="space-y-6">
-          <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-widest">{t?.footer?.platform || 'Platform'}</h4>
-          <ul className="space-y-3 text-sm">
-            <li><Link href="/" className="hover:text-white transition text-gray-400">{t?.footer?.home || 'Home'}</Link></li>
-            <li><Link href="/login" className="block w-full hover:text-red-600 transition font-medium text-red-500">{t?.footer?.customerLogin || 'Customer Login'}</Link></li>
-            <li><Link href="/register?role=partner" className="block w-full hover:text-orange-600 transition font-medium text-orange-500">{t?.footer?.partnerPortal || 'Partner Portal'}</Link></li>
-            <li><Link href="/admin/login" className="block w-full hover:text-white transition font-medium text-red-500">{t?.footer?.adminPortal || 'Admin Portal'}</Link></li>
-          </ul>
-        </div>
-
-        {/* Support */}
-        <div className="space-y-6">
-          <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-widest">{t?.footer?.support || 'Support'}</h4>
-          <ul className="space-y-3 text-sm">
-            <li><Link href="/privacy" className="hover:text-white transition">{t?.footer?.privacy || 'Privacy'}</Link></li>
-            <li><Link href="/terms" className="hover:text-white transition">{t?.footer?.terms || 'Terms'}</Link></li>
-            <li><Link href="/contact" className="hover:text-white transition">{t?.footer?.contact || 'Contact'}</Link></li>
-          </ul>
-        </div>
-
-        {/* Connect */}
-        <div className="space-y-6">
-          <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-widest">{t?.footer?.connect || 'Connect'}</h4>
-          <div className="flex gap-3 mb-6">
-            <a href="#" className="p-2 bg-slate-800 rounded-lg hover:bg-red-600 transition text-white" aria-label="Facebook"><svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/></svg></a>
-            <a href="#" className="p-2 bg-slate-800 rounded-lg hover:bg-red-600 transition text-white" aria-label="Instagram"><svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149 3.227 1.664 4.771 4.919 4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    <footer className="bg-slate-900 text-white pt-16 pb-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          
+          {/* Brand Column */}
+          <div className="space-y-4">
+            <Link href="/" className="block">
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-teal-500 rounded-lg flex items-center justify-center text-white shadow-lg">
+                  <span className="font-black text-lg">A</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-black text-xl leading-none text-white tracking-tight">
+                    Albania<span className="text-blue-400">Tours</span>
+                  </span>
+                  <span className="text-[10px] font-medium text-blue-400 uppercase tracking-widest">
+                    Premium Travel
+                  </span>
+                </div>
+              </div>
+            </Link>
+            <p className="text-slate-400 text-sm leading-relaxed">
+              Your trusted partner for unforgettable journeys through Albania. 
+              Discover hidden treasures with our premium accommodations, car rentals, 
+              tours, and transfers.
+            </p>
+            <div className="flex gap-4 pt-2">
+              {[
+                { icon: 'facebook', label: 'Facebook' },
+                { icon: 'twitter', label: 'Twitter' },
+                { icon: 'linkedin', label: 'LinkedIn' },
+                { icon: 'instagram', label: 'Instagram' }
+              ].map((social) => (
+                <a
+                  key={social.icon}
+                  href="#"
+                  className="w-10 h-10 rounded-full bg-slate-800 hover:bg-gradient-to-br hover:from-blue-600 hover:to-teal-600 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                  aria-label={social.label}
+                >
+                  {social.icon === 'facebook' && (
+                    <svg className="w-5 h-5 text-white fill-current" viewBox="0 0 24 24">
+                      <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                    </svg>
+                  )}
+                  {social.icon === 'twitter' && (
+                    <svg className="w-5 h-5 text-white fill-current" viewBox="0 0 24 24">
+                      <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                    </svg>
+                  )}
+                  {social.icon === 'linkedin' && (
+                    <svg className="w-5 h-5 text-white fill-current" viewBox="0 0 24 24">
+                      <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                      <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                  )}
+                  {social.icon === 'instagram' && (
+                    <svg className="w-5 h-5 text-white fill-current" viewBox="0 0 24 24">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                      <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                    </svg>
+                  )}
+                </a>
+              ))}
+            </div>
           </div>
-          <div className="space-y-3 text-sm">
-            <div className="flex items-center gap-3"><span className="text-red-500"><MailIcon size={16} /></span> info@albaniatours.al</div>
-            <div className="flex items-center gap-3"><span className="text-red-500"><PhoneIcon size={16} /></span> +355 6X XXX XXX</div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
+              <span className="w-1 h-6 bg-blue-500 rounded-full"></span>
+              Quick Links
+            </h3>
+            <ul className="space-y-3">
+              {[
+                { label: 'Home', href: '/' },
+                { label: 'Accommodation', href: '/accommodation' },
+                { label: 'Car Rentals', href: '/cars' },
+                { label: 'Tours & Excursions', href: '/tours' },
+                { label: 'Transfers', href: '/transfers' },
+                { label: 'Partner with Us', href: '/partner' },
+                { label: 'Contact Us', href: '/contact' },
+              ].map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-slate-400 hover:text-blue-400 transition-colors duration-300 flex items-center gap-2 group"
+                  >
+                    <span className="w-0 group-hover:w-2 transition-all duration-300 bg-blue-500 h-0.5"></span>
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal & Support */}
+          <div>
+            <h3 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
+              <span className="w-1 h-6 bg-teal-500 rounded-full"></span>
+              Legal & Support
+            </h3>
+            <ul className="space-y-3">
+              {[
+                { label: 'Terms & Conditions', href: '/terms' },
+                { label: 'Privacy Policy (GDPR)', href: '/gdpr' },
+                { label: 'Partner Agreement', href: '/partner-agreement' },
+                { label: 'Cookie Policy', href: '/cookies' },
+                { label: 'Cancellation Policy', href: '/cancellations' },
+                { label: 'Complaints & Refunds', href: '/complaints' },
+                { label: 'FAQ', href: '/faq' },
+                { label: 'Help Center', href: '/help' },
+              ].map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-slate-400 hover:text-teal-400 transition-colors duration-300 flex items-center gap-2 group"
+                  >
+                    <span className="w-0 group-hover:w-2 transition-all duration-300 bg-teal-500 h-0.5"></span>
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div>
+            <h3 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
+              <span className="w-1 h-6 bg-yellow-500 rounded-full"></span>
+              Stay Updated
+            </h3>
+            <p className="text-slate-400 text-sm mb-4">
+              Subscribe to receive exclusive deals, travel inspiration, and updates about Albania.
+            </p>
+            <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
+              <input
+                type="email"
+                placeholder="Your email address"
+                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+              />
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-bold py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-blue-500/30"
+              >
+                Subscribe Now
+              </button>
+            </form>
+            
+            {/* Payment Methods */}
+            <div className="mt-8">
+              <p className="text-xs text-slate-500 mb-3 uppercase tracking-wider">Accepted Payment Methods</p>
+              <div className="flex flex-wrap gap-3">
+                {['visa', 'mastercard', 'paypal', 'amex', 'google_pay', 'apple_pay'].map((method) => (
+                  <div
+                    key={method}
+                    className="w-10 h-6 bg-slate-800 rounded flex items-center justify-center text-[10px] text-slate-500"
+                  >
+                    {method.replace('_', ' ')}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Footer */}
+        <div className="border-t border-slate-800 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-slate-500 text-sm">
+              © {currentYear} AlbaniaTours. All rights reserved. Your trusted travel partner in Albania.
+            </p>
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2">
+                <span className="text-green-500">🔒</span>
+                <span className="text-xs text-slate-500">Secure Booking</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-blue-500">✓</span>
+                <span className="text-xs text-slate-500">GDPR Compliant</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-yellow-500">⭐</span>
+                <span className="text-xs text-slate-500">Top Rated</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Legal */}
-      <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-slate-800 text-center text-xs"><p>&copy; {new Date().getFullYear()} AlbaniaTours Premium MVP. All rights reserved.</p></div>
-
-      {/* Security notice */}
-      <div className="max-w-7xl mx-auto px-6 mt-4 text-center text-[10px] text-gray-500">Unauthorized access to administrative and partner functionality is strictly prohibited, monitored, and logged. Violations are reported.</div>
     </footer>
   );
-}
-
-function MailIcon({ size }: { size: number }) {
-  return <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9 2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>;
-}
-
-function PhoneIcon({ size }: { size: number }) {
-  return <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>;
-}
+};

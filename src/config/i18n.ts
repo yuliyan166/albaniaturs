@@ -3,7 +3,7 @@
  * Definuje povolené jazyky pro každou zónu aplikace.
  */
 
-export type LanguageCode = 'cs' | 'en' | 'sq' | 'bg';
+export type LanguageCode = 'cs' | 'en' | 'sq' | 'sk' | 'de' | 'pl';
 export type UserRole = 'customer' | 'partner' | 'admin';
 
 export interface RouteLanguageConfig {
@@ -16,19 +16,19 @@ export const LANGUAGE_CONFIG: RouteLanguageConfig[] = [
   {
     // Public zone for tourists (Czech clients)
     pathPrefix: '/',
-    allowedLanguages: ['cs', 'en', 'bg'],
+    allowedLanguages: ['cs', 'en', 'sq', 'sk', 'de', 'pl'],
     defaultLanguage: 'cs',
   },
   {
     // Zone for local partners (Albanian operators)
     pathPrefix: '/partner',
-    allowedLanguages: ['sq', 'en', 'cs', 'bg'],
+    allowedLanguages: ['sq', 'en', 'cs', 'sk', 'de', 'pl'],
     defaultLanguage: 'sq',
   },
   {
     // Administrative panel
     pathPrefix: '/admin',
-    allowedLanguages: ['cs', 'en', 'bg'],
+    allowedLanguages: ['cs', 'en', 'sq', 'sk', 'de', 'pl'],
     defaultLanguage: 'cs',
   },
 ];

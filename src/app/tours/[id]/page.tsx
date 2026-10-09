@@ -113,10 +113,10 @@ export default function ListingDetailPage() {
 
   const getCategoryLabel = (category: string) => {
     const labels: Record<string, Record<string, string>> = {
-      accommodation: { cs: 'Byty a domy', en: 'Apartments & Houses', sq: 'Akomodim', bg: 'Настаняване' },
-      car_rental: { cs: 'Půjčovny aut', en: 'Car Rental', sq: 'Me qera makina', bg: 'Автомобил под наем' },
-      excursion: { cs: 'Výlety a turistika', en: 'Excursions & Tours', sq: 'Turizëm', bg: 'Екскурзии' },
-      transfer: { cs: 'Letecké přesuny', en: 'Airport Transfers', sq: 'Transferime', bg: 'Трансфери' }
+      accommodation: { cs: 'Byty a domy', en: 'Apartments & Houses', sq: 'Akomodim', sk: 'Ubytovanie', de: 'Wohnungen & Häuser', pl: 'Mieszkania i domy' },
+      car_rental: { cs: 'Půjčovny aut', en: 'Car Rental', sq: 'Me qera makina', sk: 'Autopožičovne', de: 'Autovermietung', pl: 'Wypożyczalnie aut' },
+      excursion: { cs: 'Výlety a turistika', en: 'Excursions & Tours', sq: 'Turizëm', sk: 'Výlety a turistika', de: 'Exkursionen & Touren', pl: 'Wycieczki i turyzm' },
+      transfer: { cs: 'Letecké přesuny', en: 'Airport Transfers', sq: 'Transferime', sk: 'Letecké presuny', de: 'Flughafen transfers', pl: 'Transfery lotniskowe' }
     };
     return labels[category]?.[language] || category;
   };
@@ -124,8 +124,10 @@ export default function ListingDetailPage() {
   // Dynamic title fallbacks based on language
   const getFallbackTitle = () => {
     if (language === 'cs') return 'Luxusní apartmán s výhledem';
-    if (language === 'bg') return 'Луксозен апартамент с гледка';
+    if (language === 'sk') return 'Luxusný apartmán s výhľadom';
     if (language === 'sq') return 'Apartament luksoz me pamje';
+    if (language === 'de') return 'Luxusapartment mit Aussicht';
+    if (language === 'pl') return 'Luksusowy apartament z widokiem';
     return 'Luxury Apartment with View';
   };
 
@@ -136,11 +138,17 @@ export default function ListingDetailPage() {
     if (language === 'cs') {
       return ['Wi-Fi', 'Klimatizace', 'Parkování', 'Kuchyně', 'Úspora vody', 'Pozvánky'];
     }
-    if (language === 'bg') {
-      return ['Интернет', 'Климатизация', 'Паркинг', 'Кухня', 'Запазване на вода', 'Покани'];
+    if (language === 'sk') {
+      return ['Wi-Fi', 'Klimatizácia', 'Parkovanie', 'Kuchyňa', 'Úspora vody', 'Pozvánky'];
     }
     if (language === 'sq') {
       return ['Wi-Fi', 'Klimatizim', 'Parkim', 'Bazhmakinje', 'Ruajtja e ujit', 'Ftesa'];
+    }
+    if (language === 'de') {
+      return ['Wi-Fi', 'Klimaanlage', 'Parkplatz', 'Küche', 'Wassersparer', 'Einladungen'];
+    }
+    if (language === 'pl') {
+      return ['Wi-Fi', 'Klimatyzacja', 'Parking', 'Kuchnia', 'Oszczędzanie wody', 'Zaproszenia'];
     }
     return baseAmenities;
   };
@@ -149,20 +157,26 @@ export default function ListingDetailPage() {
   const getSectionTitle = (type: string) => {
     if (type === 'description') {
       if (language === 'cs') return 'Popis';
-      if (language === 'bg') return 'Описание';
+      if (language === 'sk') return 'Popis';
       if (language === 'sq') return 'Përshkrimi';
+      if (language === 'de') return 'Beschreibung';
+      if (language === 'pl') return 'Opis';
       return 'Description';
     }
     if (type === 'amenities') {
       if (language === 'cs') return 'Vybavení';
-      if (language === 'bg') return 'Удобства';
+      if (language === 'sk') return 'Vybavenie';
       if (language === 'sq') return 'Aksesori';
+      if (language === 'de') return 'Amenities';
+      if (language === 'pl') return 'Wyposażenie';
       return 'Amenities';
     }
     if (type === 'location') {
       if (language === 'cs') return 'Lokalita';
-      if (language === 'bg') return 'Местоположение';
+      if (language === 'sk') return 'Lokalita';
       if (language === 'sq') return 'Vendndodhja';
+      if (language === 'de') return 'Standort';
+      if (language === 'pl') return 'Lokalizacja';
       return 'Location';
     }
     return type.charAt(0).toUpperCase() + type.slice(1);

@@ -1,0 +1,38 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://albania-turs.com/sitemap.xml
+
+# Disallow admin areas
+Disallow: /admin/
+Disallow: /partner/login/
+Disallow: /login/
+Disallow: /register/
+
+# Disallow private areas
+Disallow: /profile/
+
+# CSS and JavaScript
+Allow: /_next/static/
+Allow: /static/
+
+# Media files
+Allow: /images/
+Allow: /public/
+
+# Allow search engines to index all bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /images/
+
+User-agent: Googlebot-News
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
+# Crawl delay (optional)
+Crawl-delay: 1

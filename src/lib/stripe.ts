@@ -1,51 +1,73 @@
-import Stripe from 'stripe';
+// Stripe Integration for Albania-Turs
+import { Stripe, loadStripe } from '@stripe/stripe-js';
 
-/**
- * Principal Engineer Note:
- * Singleton pattern for Stripe client to prevent multiple initializations
- * during Next.js hot-reloads in development.
- */
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!,
-  {
-    apiVersion: '2023-10-16',
-    typescript: true,
-  });
+let stripePromise: Promise<Stripe | null>;
 
-export interface PaymentSessionParams {
-  bookingId: string;
-  amount: number;
-  offerTitle: string;
-  customerEmail: string;
+const getStripe = () => {
+  if (!stripePromise) {
+    stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '');
+  }
+  return stripePromise;
+};
+
+export default getStripe;
+
+export async function createPaymentIntent(amount: number, currency: string) {
+  try {
+    const response = await fetch('/api/stripe/create-payment-intent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amount, currency }),
+    });
+
+    const data = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(data.error || 'Payment intent creation failed');
+    }
+    
+    return data;
+  } catch (error) {
+    console.error('Stripe Payment Intent Error:', error);
+    throw error;
+  }
 }
 
-export async function createPaymentSession({
-  bookingId,
-  amount,
-  offerTitle,
-  customerEmail,
-}: PaymentSessionParams) {
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
-    line_items: [
-      {
-        price_data: {
-          currency: 'czk',
-          product_data: {
-            name: offerTitle,
-          },
-          unit_amount: Math.round(amount * 100), // Stripe expects amounts in cents/haleres
-        },
-        quantity: 1,
-      },
-    ],
-    mode: 'payment',
-    customer_email: customerEmail,
-    success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/booking/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/booking/cancel`,
-    metadata: {
-      bookingId: bookingId,
-    },
+export async function confirmPayment(paymentIntentId: string, cardElement: any) {
+  const stripe = await getStripe();
+  
+  if (!stripe) {
+    throw new Error('Stripe not loaded');
+  }
+
+  const { error, paymentIntent } = await stripe.confirmCardPayment(
+    paymentIntentId,
+    { payment_method: cardElement }
+  );
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return paymentIntent;
+}
+
+export async function createPaymentMethod(cardElement: any, billingDetails: any) {
+  const stripe = await getStripe();
+  
+  if (!stripe) {
+    throw new Error('Stripe not loaded');
+  }
+
+  const { error, paymentMethod } = await stripe.createPaymentMethod({
+    type: 'card',
+    card: cardElement,
+    billing_details: billingDetails,
   });
 
-  return session.url;
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return paymentMethod;
 }

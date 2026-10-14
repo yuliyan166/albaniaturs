@@ -7,14 +7,14 @@ import { useLanguage } from '@/app/providers/LanguageContext';
 import { MapPin, Star, Image as ImageIcon, DollarSign, Clock, Upload } from 'lucide-react';
 
 const PLACEHOLDER_TRANSLATIONS: Record<string, Record<string, string>> = {
-  title: { cs: 'Drahý byt s videm', en: 'Luxury Apartment with View', sq: 'Apartmenti Deluxe me Përparime', bg: 'Роскошен апартамент с изглед' },
-  description: { cs: 'Nově zrekonstruovaný drahý byt v centru, blízko všech hlavních lákadek.', en: 'Recently renovated luxury apartment in the center, close to all main attractions.', sq: 'Apartmenti i fresku luksuz në qendër, afër të gjitha tarive kryesore.', bg: 'Пресновъзобновен луксозен апартамент в центъра, близо до всички основни забележителности.' },
+  title: { cs: 'Drahý byt s videm', en: 'Luxury Apartment with View', sq: 'Apartmenti Deluxe me Përparime' },
+  description: { cs: 'Nově zrekonstruovaný drahý byt v centru, blízko všech hlavních lákadek.', en: 'Recently renovated luxury apartment in the center, close to all main attractions.', sq: 'Apartmenti i fresku luksuz në qendër, afër të gjitha tarive kryesore.' },
 };
 
 export default function AddOfferPage() {
   const router = useRouter();
   const supabase = createClient();
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
 
   const [category, setCategory] = useState('accommodation');
   const [title, setTitle] = useState('');
@@ -168,15 +168,15 @@ export default function AddOfferPage() {
               </div>
 
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">{(language as string) === 'cs' ? 'Název' : (language as string) === 'sq' ? 'Titulli' : (language as string) === 'bg' ? 'Заглавие' : 'Title'} ({language.toUpperCase()})</label>
-                <input type="text" required value={title} onChange={(e) => setTitle(e.target.value)} placeholder={`${((language as string) === 'cs' ? 'Zadejte název' : (language as string) === 'sq' ? 'Shkruani titullin' : (language as string) === 'bg' ? 'Въведете заглавие' : 'Enter title')} ${language}`} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">{t.listing.title} ({language.toUpperCase()})</label>
+                <input type="text" required value={title} onChange={(e) => setTitle(e.target.value)} placeholder={`${t.listing.titlePlaceholder || 'Enter title'} ${language}`} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
               </div>
             </div>
 
             <div className="mt-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">{(language as string) === 'cs' ? 'Popis' : (language as string) === 'sq' ? 'Përshkrimi' : (language as string) === 'bg' ? 'Описание' : 'Description'} ({language.toUpperCase()})</label>
-              <textarea rows={4} required value={description} onChange={(e) => setDescription(e.target.value)} placeholder={`${((language as string) === 'cs' ? 'Popište váš inzerát' : (language as string) === 'sq' ? 'Përshkruani ofertën tuaj' : (language as string) === 'bg' ? 'Опишете обявлението' : 'Describe your listing')} ${language}`} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
-              <p className="mt-1 text-xs text-gray-500">{(language as string) === 'cs' ? 'Bude automaticky přeloženo pro všechny podporované jazyky (SQ, EN, CS, SK)' : (language as string) === 'sq' ? 'Ky do të përkthehet automatikisht në të gjitha gjuhët e mbështetura (SQ, EN, CS, SK)' : (language as string) === 'bg' ? 'Ще бъде автоматично преведено за всички поддържани езици (SQ, EN, CS, SK, BG)' : 'This will be auto-translated for all supported languages (SQ, EN, CS, SK, BG)'}</p>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t.listing.descriptionLabel || 'Description'} ({language.toUpperCase()})</label>
+              <textarea rows={4} required value={description} onChange={(e) => setDescription(e.target.value)} placeholder={`${t.listing.descriptionPlaceholder || 'Describe your listing'} ${language}`} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+              <p className="mt-1 text-xs text-gray-500">{t.listing.autoTranslateNote || 'Auto-translated for all supported languages (SQ, EN, CS, SK)'}</p>
             </div>
           </section>
 
@@ -192,22 +192,22 @@ export default function AddOfferPage() {
                   <input type="number" required min={0} value={price_czk || ''} onChange={(e) => setPrice_czk(Number(e.target.value))} placeholder="500" className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
                 </div>
                 <p className="text-xs text-gray-500 mt-1">
-                  {category === 'accommodation' ? (language === 'cs' ? 'Cena za noc' : language === 'sq' ? 'Çmimi për natë' : language === 'bg' ? 'Цена за нощувка' : 'Price per night') : category === 'car_rental' ? (language === 'cs' ? 'Cena za den' : language === 'sq' ? 'Çmimi për ditë' : language === 'bg' ? 'Цена на ден' : 'Price per day') : (language === 'cs' ? 'Cena za rezervaci' : language === 'sq' ? 'Çmimi për rezervim' : language === 'bg' ? 'Цена за резервация' : 'Price per booking')}
+                  {category === 'accommodation' ? t.listing.priceAccommodation || 'Cena za noc' : category === 'car_rental' ? t.listing.priceCarRental || 'Cena za den' : t.listing.priceBooking || 'Cena za rezervaci'}
                 </p>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">{language === 'cs' ? 'Kapacita' : language === 'sq' ? 'Kapaciteti' : language === 'bg' ? 'Капацитет' : 'Capacity'}</label>
-                <div className="relative">
-                  <Star className="absolute left-3 top-3 text-gray-400" size={18} />
-                  <input type="number" required min={1} value={capacity || ''} onChange={(e) => setCapacity(Number(e.target.value))} placeholder="2" className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
-                </div>
-                <p className="text-xs text-gray-500 mt-1">{language === 'cs' ? 'Max. hosté/místa' : language === 'sq' ? 'Maks. mysafirë/vende' : language === 'bg' ? 'Макс. гости/седалки/места' : 'Max guests/seats/slots'}</p>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{t.listing.capacityLabel}</label>
+               <div className="relative">
+                 <Star className="absolute left-3 top-3 text-gray-400" size={18} />
+                 <input type="number" required min={1} value={capacity || ''} onChange={(e) => setCapacity(Number(e.target.value))} placeholder="2" className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+               </div>
+               <p className="text-xs text-gray-500 mt-1">{t.listing.maxGuests}</p>
               </div>
 
               {(category === 'excursion' || category === 'transfer') && (
                 <div className="md:col-span-3">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">{language === 'cs' ? 'Časy odjezdu (oddělené čárkou)' : language === 'sq' ? 'Orët e Nisjes (të ndara me presje)' : language === 'bg' ? 'Време на départ (разделени със запетая)' : 'Departure Times (comma-separated)'}</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t.listing.departureTimes}</label>
                   <div className="relative">
                     <Clock className="absolute left-3 top-3 text-gray-400" size={18} />
                     <input type="text" value={departure_times} onChange={(e) => setDepartureTimes(e.target.value)} placeholder="09:00, 12:00, 15:00" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
@@ -219,7 +219,7 @@ export default function AddOfferPage() {
 
           {/* Media Section with Direct Upload */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">{language === 'cs' ? 'Média (Nahrát Obrázky)' : language === 'sq' ? 'Mediat (Ngarko Imazhet)' : language === 'bg' ? 'Медия (Качване на снимки)' : 'Media (Upload Images)'}</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">{t.listing.media}</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {image_urls.map((url, index) => (

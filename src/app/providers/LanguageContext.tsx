@@ -133,6 +133,7 @@ const SUPPORTED_LANGUAGES: Language[] = [
   { code: 'cs', name: 'Čeština' },
   { code: 'en', name: 'English' },
   { code: 'sq', name: 'Shqip' },
+  { code: 'sk', name: 'Slovenčina' },
   { code: 'bg', name: 'Български', flag: '🇧🇬' },
 ];
 

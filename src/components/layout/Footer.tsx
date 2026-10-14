@@ -32,14 +32,14 @@ export const Footer: React.FC = () => {
               </div>
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed">
-              {t.footer?.brandDescription || 'Your trusted partner for unforgettable journeys through Albania. Discover hidden treasures with our premium accommodations, car rentals, tours, and transfers.'}
+              {t.footer?.brandDescription}
             </p>
             <div className="flex gap-3 pt-2">
               {[
-                { icon: Facebook, key: 'facebook', label: t.footer?.facebook || 'Facebook', href: 'https://facebook.com' },
-                { icon: Twitter, key: 'twitter', label: t.footer?.twitter || 'Twitter', href: 'https://twitter.com' },
-                { icon: Linkedin, key: 'linkedin', label: t.footer?.linkedin || 'LinkedIn', href: 'https://linkedin.com' },
-                { icon: Instagram, key: 'instagram', label: t.footer?.instagram || 'Instagram', href: 'https://instagram.com' }
+                { icon: Facebook, key: 'facebook', label: t.footer?.facebook, href: 'https://facebook.com' },
+                { icon: Twitter, key: 'twitter', label: t.footer?.twitter, href: 'https://twitter.com' },
+                { icon: Linkedin, key: 'linkedin', label: t.footer?.linkedin, href: 'https://linkedin.com' },
+                { icon: Instagram, key: 'instagram', label: t.footer?.instagram, href: 'https://instagram.com' }
               ].map((social) => (
                 <a
                   key={social.key}
@@ -59,17 +59,17 @@ export const Footer: React.FC = () => {
           <div>
             <h3 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
               <span className="w-1 h-6 bg-blue-500 rounded-full"></span>
-              {t.footer?.quickLinks || 'Quick Links'}
+              {t.footer?.quickLinks}
             </h3>
             <ul className="space-y-3">
               {[
-                { label: t.footer?.home || 'Home', href: '/', icon: 'Home' },
-                { label: t.footer?.accommodation || 'Accommodation', href: '/accommodation', icon: 'Building' },
-                { label: t.footer?.carRental || 'Car Rental', href: '/cars', icon: 'Car' },
-                { label: t.footer?.tours || 'Tours', href: '/tours', icon: 'Map' },
-                { label: t.footer?.transfers || 'Transfers', href: '/transfers', icon: 'Plane' },
-                { label: t.footer?.partnerWithUs || 'Partner with Us', href: '/partner', icon: 'Users' },
-                { label: t.footer?.contactUs || 'Contact Us', href: '/contact', icon: 'Mail' },
+                { label: t.footer?.home, href: '/', icon: 'Home' },
+                { label: t.footer?.accommodation, href: '/accommodation', icon: 'Building' },
+                { label: t.footer?.carRental, href: '/cars', icon: 'Car' },
+                { label: t.footer?.tours, href: '/tours', icon: 'Map' },
+                { label: t.footer?.transfers, href: '/transfers', icon: 'Plane' },
+                { label: t.footer?.partnerWithUs, href: '/partner', icon: 'Users' },
+                { label: t.footer?.contactUs, href: '/contact', icon: 'Mail' },
               ].map((link) => (
                 <li key={link.label}>
                   <Link
@@ -91,18 +91,18 @@ export const Footer: React.FC = () => {
           <div>
             <h3 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
               <span className="w-1 h-6 bg-teal-500 rounded-full"></span>
-              {t.footer?.legalSupport || 'Legal & Support'}
+              {t.footer?.legalSupport}
             </h3>
             <ul className="space-y-3">
               {[
-                { label: t.footer?.termsConditions || 'Terms & Conditions', href: '/terms', icon: 'FileText' },
-                { label: t.footer?.privacyPolicy || 'Privacy Policy (GDPR)', href: '/gdpr', icon: 'Shield' },
-                { label: t.footer?.partnerAgreement || 'Partner Agreement', href: '/partner-agreement', icon: 'Handshake' },
-                { label: t.footer?.cookiePolicy || 'Cookie Policy', href: '/cookies', icon: 'Cookie' },
-                { label: t.footer?.cancellationPolicy || 'Cancellation Policy', href: '/cancellations', icon: 'Ban' },
-                { label: t.footer?.complaintsRefunds || 'Complaints & Refunds', href: '/complaints', icon: 'AlertTriangle' },
-                { label: t.footer?.faq || 'FAQ', href: '/faq', icon: 'HelpCircle' },
-                { label: t.footer?.helpCenter || 'Help Center', href: '/help', icon: 'LifeBuoy' },
+                { label: t.footer?.termsConditions, href: '/terms', icon: 'FileText' },
+                { label: t.footer?.privacyPolicy, href: '/gdpr', icon: 'Shield' },
+                { label: t.footer?.partnerAgreement, href: '/partner-agreement', icon: 'Handshake' },
+                { label: t.footer?.cookiePolicy, href: '/cookies', icon: 'Cookie' },
+                { label: t.footer?.cancellationPolicy, href: '/cancellations', icon: 'Ban' },
+                { label: t.footer?.complaintsRefunds, href: '/complaints', icon: 'AlertTriangle' },
+                { label: t.footer?.faq, href: '/faq', icon: 'HelpCircle' },
+                { label: t.footer?.helpCenter, href: '/help', icon: 'LifeBuoy' },
               ].map((link) => (
                 <li key={link.label}>
                   <Link
@@ -124,28 +124,28 @@ export const Footer: React.FC = () => {
           <div>
             <h3 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
               <span className="w-1 h-6 bg-yellow-500 rounded-full"></span>
-              {t.footer?.stayUpdated || 'Stay Updated'}
+              {t.footer?.stayUpdated}
             </h3>
             <p className="text-slate-400 text-sm mb-4">
-              {t.footer?.subscribe || 'Subscribe to receive exclusive deals, travel inspiration, and updates about Albania.'}
+              {t.footer?.subscribe}
             </p>
             <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
               <input
                 type="email"
-                placeholder={t.footer?.emailPlaceholder || 'Your email address'}
+                placeholder={t.footer?.emailPlaceholder}
                 className="w-full px-4 py-3 bg-slate-800/80 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all backdrop-blur-sm"
               />
               <button
                 type="submit"
                 className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-bold py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-blue-500/30"
               >
-                {t.footer?.subscribeButton || 'Subscribe Now'}
+                {t.footer?.subscribeButton}
               </button>
             </form>
             
             {/* Payment Methods */}
             <div className="mt-8">
-              <p className="text-xs text-slate-500 mb-3 uppercase tracking-wider">{t.footer?.acceptedPaymentMethods || 'Accepted Payment Methods'}</p>
+              <p className="text-xs text-slate-500 mb-3 uppercase tracking-wider">{t.footer?.acceptedPaymentMethods}</p>
               <div className="flex flex-wrap gap-2 sm:gap-3">
                 {[
                   { name: 'Visa', icon: 'CreditCard' },
@@ -172,7 +172,7 @@ export const Footer: React.FC = () => {
         <div className="border-t border-slate-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-slate-400 text-sm md:text-base text-center md:text-left">
-              © {currentYear} AlbaniaTours. {t.footer?.copyright || 'All rights reserved. Your trusted travel partner in Albania.'}
+              © {currentYear} AlbaniaTours. {t.footer?.copyright}
             </p>
             <div className="flex flex-wrap items-center justify-center md:justify-end gap-4 md:gap-6 mt-4 md:mt-0">
               <div className="flex items-center gap-2 bg-slate-800/50 px-3 py-2 rounded-lg">

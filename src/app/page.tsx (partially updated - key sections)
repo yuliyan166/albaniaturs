@@ -1,0 +1,7 @@
+import { useLanguage } from '@/app/providers/LanguageContext';
+const { t } = useLanguage(); // simplified; integrate with your translations engine later
+
+// In render:
+<h2 className="mb-8 text-3xl font-bold text-gray-800">
+  {t?.header_offers || 'Предложения'}
+</h2>

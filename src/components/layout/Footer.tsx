@@ -2,9 +2,11 @@
 import React from 'react';
 import Link from 'next/link';
 import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { useLanguage } from '@/app/providers/LanguageContext';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white pt-16 pb-8 shadow-2xl">
@@ -30,19 +32,17 @@ export const Footer: React.FC = () => {
               </div>
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Your trusted partner for unforgettable journeys through Albania.
-              Discover hidden treasures with our premium accommodations, car rentals,
-              tours, and transfers.
+              {t.footer?.brandDescription || 'Your trusted partner for unforgettable journeys through Albania. Discover hidden treasures with our premium accommodations, car rentals, tours, and transfers.'}
             </p>
             <div className="flex gap-3 pt-2">
               {[
-                { icon: Facebook, label: 'Facebook', href: 'https://facebook.com' },
-                { icon: Twitter, label: 'Twitter', href: 'https://twitter.com' },
-                { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com' },
-                { icon: Instagram, label: 'Instagram', href: 'https://instagram.com' }
+                { icon: Facebook, key: 'facebook', label: t.footer?.facebook || 'Facebook', href: 'https://facebook.com' },
+                { icon: Twitter, key: 'twitter', label: t.footer?.twitter || 'Twitter', href: 'https://twitter.com' },
+                { icon: Linkedin, key: 'linkedin', label: t.footer?.linkedin || 'LinkedIn', href: 'https://linkedin.com' },
+                { icon: Instagram, key: 'instagram', label: t.footer?.instagram || 'Instagram', href: 'https://instagram.com' }
               ].map((social) => (
                 <a
-                  key={social.label}
+                  key={social.key}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -59,17 +59,17 @@ export const Footer: React.FC = () => {
           <div>
             <h3 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
               <span className="w-1 h-6 bg-blue-500 rounded-full"></span>
-              Quick Links
+              {t.footer?.quickLinks || 'Quick Links'}
             </h3>
             <ul className="space-y-3">
               {[
-                { label: 'Home', href: '/', icon: 'Home' },
-                { label: 'Accommodation', href: '/accommodation', icon: 'Building' },
-                { label: 'Car Rentals', href: '/cars', icon: 'Car' },
-                { label: 'Tours', href: '/tours', icon: 'Map' },
-                { label: 'Transfers', href: '/transfers', icon: 'Plane' },
-                { label: 'Partner with Us', href: '/partner', icon: 'Users' },
-                { label: 'Contact Us', href: '/contact', icon: 'Mail' },
+                { label: t.footer?.home || 'Home', href: '/', icon: 'Home' },
+                { label: t.footer?.accommodation || 'Accommodation', href: '/accommodation', icon: 'Building' },
+                { label: t.footer?.carRental || 'Car Rental', href: '/cars', icon: 'Car' },
+                { label: t.footer?.tours || 'Tours', href: '/tours', icon: 'Map' },
+                { label: t.footer?.transfers || 'Transfers', href: '/transfers', icon: 'Plane' },
+                { label: t.footer?.partnerWithUs || 'Partner with Us', href: '/partner', icon: 'Users' },
+                { label: t.footer?.contactUs || 'Contact Us', href: '/contact', icon: 'Mail' },
               ].map((link) => (
                 <li key={link.label}>
                   <Link
@@ -91,18 +91,18 @@ export const Footer: React.FC = () => {
           <div>
             <h3 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
               <span className="w-1 h-6 bg-teal-500 rounded-full"></span>
-              Legal & Support
+              {t.footer?.legalSupport || 'Legal & Support'}
             </h3>
             <ul className="space-y-3">
               {[
-                { label: 'Terms & Conditions', href: '/terms', icon: 'FileText' },
-                { label: 'Privacy Policy (GDPR)', href: '/gdpr', icon: 'Shield' },
-                { label: 'Partner Agreement', href: '/partner-agreement', icon: 'Handshake' },
-                { label: 'Cookie Policy', href: '/cookies', icon: 'Cookie' },
-                { label: 'Cancellation Policy', href: '/cancellations', icon: 'Ban' },
-                { label: 'Complaints & Refunds', href: '/complaints', icon: 'AlertTriangle' },
-                { label: 'FAQ', href: '/faq', icon: 'HelpCircle' },
-                { label: 'Help Center', href: '/help', icon: 'LifeBuoy' },
+                { label: t.footer?.termsConditions || 'Terms & Conditions', href: '/terms', icon: 'FileText' },
+                { label: t.footer?.privacyPolicy || 'Privacy Policy (GDPR)', href: '/gdpr', icon: 'Shield' },
+                { label: t.footer?.partnerAgreement || 'Partner Agreement', href: '/partner-agreement', icon: 'Handshake' },
+                { label: t.footer?.cookiePolicy || 'Cookie Policy', href: '/cookies', icon: 'Cookie' },
+                { label: t.footer?.cancellationPolicy || 'Cancellation Policy', href: '/cancellations', icon: 'Ban' },
+                { label: t.footer?.complaintsRefunds || 'Complaints & Refunds', href: '/complaints', icon: 'AlertTriangle' },
+                { label: t.footer?.faq || 'FAQ', href: '/faq', icon: 'HelpCircle' },
+                { label: t.footer?.helpCenter || 'Help Center', href: '/help', icon: 'LifeBuoy' },
               ].map((link) => (
                 <li key={link.label}>
                   <Link
@@ -124,28 +124,28 @@ export const Footer: React.FC = () => {
           <div>
             <h3 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
               <span className="w-1 h-6 bg-yellow-500 rounded-full"></span>
-              Stay Updated
+              {t.footer?.stayUpdated || 'Stay Updated'}
             </h3>
             <p className="text-slate-400 text-sm mb-4">
-              Subscribe to receive exclusive deals, travel inspiration, and updates about Albania.
+              {t.footer?.subscribe || 'Subscribe to receive exclusive deals, travel inspiration, and updates about Albania.'}
             </p>
             <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
               <input
                 type="email"
-                placeholder="Your email address"
+                placeholder={t.footer?.emailPlaceholder || 'Your email address'}
                 className="w-full px-4 py-3 bg-slate-800/80 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all backdrop-blur-sm"
               />
               <button
                 type="submit"
                 className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-bold py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-blue-500/30"
               >
-                Subscribe Now
+                {t.footer?.subscribeButton || 'Subscribe Now'}
               </button>
             </form>
             
             {/* Payment Methods */}
             <div className="mt-8">
-              <p className="text-xs text-slate-500 mb-3 uppercase tracking-wider">Accepted Payment Methods</p>
+              <p className="text-xs text-slate-500 mb-3 uppercase tracking-wider">{t.footer?.acceptedPaymentMethods || 'Accepted Payment Methods'}</p>
               <div className="flex flex-wrap gap-2 sm:gap-3">
                 {[
                   { name: 'Visa', icon: 'CreditCard' },
@@ -172,26 +172,26 @@ export const Footer: React.FC = () => {
         <div className="border-t border-slate-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-slate-400 text-sm md:text-base text-center md:text-left">
-              © {currentYear} AlbaniaTours. All rights reserved. Your trusted travel partner in Albania.
+              © {currentYear} AlbaniaTours. {t.footer?.copyright || 'All rights reserved. Your trusted travel partner in Albania.'}
             </p>
             <div className="flex flex-wrap items-center justify-center md:justify-end gap-4 md:gap-6 mt-4 md:mt-0">
               <div className="flex items-center gap-2 bg-slate-800/50 px-3 py-2 rounded-lg">
                 <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
-                <span className="text-xs text-slate-300 hidden sm:inline">Secure Booking</span>
+                <span className="text-xs text-slate-300 hidden sm:inline">{t.footer?.secureBooking || 'Secure Booking'}</span>
               </div>
               <div className="flex items-center gap-2 bg-slate-800/50 px-3 py-2 rounded-lg">
                 <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
-                <span className="text-xs text-slate-300 hidden sm:inline">GDPR Compliant</span>
+                <span className="text-xs text-slate-300 hidden sm:inline">{t.footer?.gdprCompliant || 'GDPR Compliant'}</span>
               </div>
               <div className="flex items-center gap-2 bg-slate-800/50 px-3 py-2 rounded-lg">
                 <svg className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
                 </svg>
-                <span className="text-xs text-slate-300 hidden sm:inline">Top Rated</span>
+                <span className="text-xs text-slate-300 hidden sm:inline">{t.footer?.topRated || 'Top Rated'}</span>
               </div>
             </div>
           </div>

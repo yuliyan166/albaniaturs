@@ -66,7 +66,7 @@ export const translations = {
       booking: 'Booking',
       paymentStatus: 'Payment Status',
       appliedCommission: 'Applied Commission',
-      top Rated: 'Top Rated',
+      topRated: 'Top Rated',
     },
     footer: {
       brandDescription: 'Your trusted partner for unforgettable journeys through Albania. Discover hidden treasures with our premium accommodations, car rentals, tours, and transfers.',

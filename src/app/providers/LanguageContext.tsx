@@ -178,7 +178,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   // Safe fallback: if translations are missing, use English defaults.
   const safeT = (() => {
-    const raw = translations[language];
+    const raw = translations[language as keyof typeof translations] || translations.en;
     if (!raw) return (translations.en as TranslationStrings);
     // Ensure categories always exists
     const cats = (raw as any).categories;

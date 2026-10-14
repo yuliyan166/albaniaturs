@@ -3,7 +3,7 @@
  * Definuje povolené jazyky pro každou zónu aplikace.
  */
 
-export type LanguageCode = 'cs' | 'en' | 'sq' | 'sk' | 'bg';
+export type LanguageCode = 'cs' | 'sk' | 'en' | 'sq';
 export type UserRole = 'customer' | 'partner' | 'admin';
 
 export interface RouteLanguageConfig {

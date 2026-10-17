@@ -77,13 +77,11 @@ export default function AddOfferPage() {
     titles.en = text; // English as universal fallback
     titles.cs = text;
     titles.sq = text;
-    titles.bg = text;
 
     descriptions[activeLang] = text;
     descriptions.en = text;
     descriptions.cs = text;
     descriptions.sq = text;
-    descriptions.bg = text;
 
     return { titles, descriptions };
   };
@@ -125,7 +123,7 @@ export default function AddOfferPage() {
       if (insertError) { setError(insertError.message); setLoading(false); return; }
       router.push('/partner');
     } catch (err: any) {
-      setError(err.message || ((language as string) === 'cs' ? 'Došlo k neočekávané chybě.' : (language as string) === 'sq' ? 'Ndodhi një gabim i papritur.' : (language as string) === 'bg' ? 'Възникна неочаквана грешка.' : 'An unexpected error occurred.'));
+      setError(err.message || ((language as string) === 'cs' ? t.listing.uploadError.cs : (language as string) === 'sq' ? t.listing.uploadError.sq : 'An unexpected error occurred.'));
     } finally {
       setLoading(false);
     }
@@ -135,8 +133,8 @@ export default function AddOfferPage() {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">{(language as string) === 'cs' ? 'Přidat Nový Inzerát' : (language as string) === 'sq' ? 'Shtoni Ofertë të Re' : (language as string) === 'bg' ? 'Добавете Ново Обявление' : 'Add New Listing'}</h1>
-          <p className="text-gray-600 mt-1">{(language as string) === 'cs' ? 'Vytvořte nové ubytování, půjčovnu aut nebo zážitek pro své zákazníky.' : (language as string) === 'sq' ? 'Krijoni një akomodim të ri, makinë me qera ose përvojë ture për klientët tuaj.' : (language as string) === 'bg' ? 'Създайте ново настаняване, автомобил под наем или туристическо преживяване за вашите клиенти.' : 'Create a new accommodation, car rental, or tour experience for your customers.'}</p>
+          <h1 className="text-2xl font-bold text-gray-900">{t.listing.createListing}</h1>
+          <p className="text-gray-600 mt-1">{t.listing.descriptionLabel || 'Create a new accommodation, car rental, or tour experience for your customers.'}</p>
         </div>
 
         {error && (
@@ -147,66 +145,38 @@ export default function AddOfferPage() {
 
           {/* Basic Information Section */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">{(language as string) === 'cs' ? 'Základní Informace' : (language as string) === 'sq' ? 'Informacioni Bazik' : (language as string) === 'bg' ? 'Основна Информация' : 'Basic Information'}</h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">{(language as string) === 'cs' ? 'Kategorie' : (language as string) === 'sq' ? 'Kategoria' : (language as string) === 'bg' ? 'Категория' : 'Category'}</label>
-                <select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                  <option value="accommodation">{t(language).accommodation}</option>
-                  <option value="car_rental">{t(language).carRental}</option>
-                  <option value="excursion">{t(language).excursion}</option>
-                  <option value="transfer">{t(language).transfer}</option>
-                </select>
-              </div>
-
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">{t.listing.title} ({language.toUpperCase()})</label>
-                <input type="text" required value={title} onChange={(e) => setTitle(e.target.value)} placeholder={`${t.listing.titlePlaceholder || 'Enter title'} ${language}`} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
-              </div>
-            </div>
-
-            <div className="mt-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t.listing.descriptionLabel || 'Description'} ({language.toUpperCase()})</label>
-              <textarea rows={4} required value={description} onChange={(e) => setDescription(e.target.value)} placeholder={`${t.listing.descriptionPlaceholder || 'Describe your listing'} ${language}`} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
-              <p className="mt-1 text-xs text-gray-500">{t.listing.autoTranslateNote || 'Auto-translated for all supported languages (SQ, EN, CS, SK)'}</p>
-            </div>
-          </section>
-
-          {/* Pricing & Capacity Section */}
-          <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">{(language as string) === 'cs' ? 'Cena a Kapacita' : (language as string) === 'sq' ? 'Çmimi & Kapaciteti' : (language as string) === 'bg' ? 'Цена и Капацитет' : 'Pricing & Capacity'}</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">{t.listing.pricingLabel}</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">{(language as string) === 'cs' ? 'Cena (CZK)' : (language as string) === 'sq' ? 'Çmimi (CZK)' : (language as string) === 'bg' ? 'Цена (CZK)' : 'Price (CZK)'}</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{t.listing.priceLabel}</label>
                 <div className="relative">
                   <DollarSign className="absolute left-3 top-3 text-gray-400" size={18} />
                   <input type="number" required min={0} value={price_czk || ''} onChange={(e) => setPrice_czk(Number(e.target.value))} placeholder="500" className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
                 </div>
                 <p className="text-xs text-gray-500 mt-1">
-                  {category === 'accommodation' ? t.listing.priceAccommodation || 'Cena za noc' : category === 'car_rental' ? t.listing.priceCarRental || 'Cena za den' : t.listing.priceBooking || 'Cena za rezervaci'}
+                  {category === 'accommodation' ? t.listing.priceAccommodation || 'Cena za noc' : category === 'car_rental' ? t.listing.priceCarRental || 'Cena za den' : t.listing.priceBooking || 'Cena po rezervaci'}
                 </p>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">{t.listing.capacityLabel}</label>
-               <div className="relative">
-                 <Star className="absolute left-3 top-3 text-gray-400" size={18} />
-                 <input type="number" required min={1} value={capacity || ''} onChange={(e) => setCapacity(Number(e.target.value))} placeholder="2" className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
-               </div>
-               <p className="text-xs text-gray-500 mt-1">{t.listing.maxGuests}</p>
-              </div>
-
-              {(category === 'excursion' || category === 'transfer') && (
-                <div className="md:col-span-3">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">{t.listing.departureTimes}</label>
-                  <div className="relative">
-                    <Clock className="absolute left-3 top-3 text-gray-400" size={18} />
-                    <input type="text" value={departure_times} onChange={(e) => setDepartureTimes(e.target.value)} placeholder="09:00, 12:00, 15:00" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
-                  </div>
+                 <div className="relative">
+                   <Star className="absolute left-3 top-3 text-gray-400" size={18} />
+                   <input type="number" required min={1} value={capacity || ''} onChange={(e) => setCapacity(Number(e.target.value))} placeholder="2" className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+                 </div>
+                 <p className="text-xs text-gray-500 mt-1">{t.listing.maxGuests}</p>
                 </div>
-              )}
+
+                {(category === 'excursion' || category === 'transfer') && (
+                  <div className="md:col-span-3">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t.listing.departureTimes}</label>
+                    <div className="relative">
+                      <Clock className="absolute left-3 top-3 text-gray-400" size={18} />
+                      <input type="text" value={departure_times} onChange={(e) => setDepartureTimes(e.target.value)} placeholder="09:00, 12:00, 15:00" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+                    </div>
+                  </div>
+                )}
             </div>
           </section>
 
@@ -222,7 +192,7 @@ export default function AddOfferPage() {
                   {url && (
                     <div className="relative rounded-lg overflow-hidden">
                       <img src={url} alt={`Preview ${index + 1}`} className="w-full h-32 object-cover" />
-                      <button type="button" onClick={() => setImage_urls(prev => prev.filter((_, i) => i !== index))} className="absolute top-0 left-0 bg-red-600 text-white px-2 py-1 rounded-br-lg text-xs shadow-sm hover:bg-red-700">{language === 'cs' ? 'Odstranit' : language === 'sq' ? 'Hiq' : language === 'bg' ? 'Премахни' : 'Remove'}</button>
+                      <button type="button" onClick={() => setImage_urls(prev => prev.filter((_, i) => i !== index))} className="absolute top-0 left-0 bg-red-600 text-white px-2 py-1 rounded-br-lg text-xs shadow-sm hover:bg-red-700">{t.listing.remove}</button>
                     </div>
                   )}
                 </div>
@@ -243,7 +213,7 @@ export default function AddOfferPage() {
             <div className="mt-6 pt-4 border-t">
               <label className="block text-sm font-medium text-gray-700 mb-1">{language === 'cs' ? 'Video URL (MP4/WebM)' : language === 'sq' ? 'Video URL (MP4/WebM)' : language === 'bg' ? 'Видео URL (MP4/WebM)' : 'Video URL (MP4/WebM)'}</label>
               <input type="url" value={video_url} onChange={(e) => setVideoUrl(e.target.value)} placeholder="https://example.com/video.mp4" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
-              <p className="mt-1 text-xs text-gray-500">{language === 'cs' ? 'Podporováno MP4 a WebM formáty (max 50 MB)' : language === 'sq' ? 'MP4 dhe WebM formate të mbështetura (maks. 50 MB)' : language === 'bg' ? 'Поддържани формати: MP4 и WebM (макс. 50 МБ)' : 'Supported formats: MP4 and WebM (max 50 MB)'}</p>
+              <p className="mt-1 text-xs text-gray-500">{t.listing.supportedFormats}</p>
             </div>
 
             {/* iCal URL (for availability calendar) */}
@@ -252,14 +222,14 @@ export default function AddOfferPage() {
           {/* Submit Section */}
           <div className="pt-6 border-t">
             <div className="flex items-center justify-between">
-              <button type="button" onClick={() => router.push('/partner')} className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium transition-colors">{language === 'cs' ? 'Zrušit' : language === 'sq' ? 'Anulo' : language === 'bg' ? 'Отказ' : 'Cancel'}</button>
+              <button type="button" onClick={() => router.push('/partner')} className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium transition-colors">{t.listing.cancel}</button>
               <button type="submit" disabled={loading} className="px-8 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium flex items-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                 {loading ? (<>
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                  {language === 'cs' ? 'Vytváření...' : language === 'sq' ? 'Duke krijuar...' : language === 'bg' ? 'Създаване...' : 'Creating...'}
+                  {t.listing.creating}
                 </>) : (<>
                   <MapPin size={18} />
-                  {language === 'cs' ? 'Vytvořit Inzerát' : language === 'sq' ? 'Krijo Ofertën' : language === 'bg' ? 'Създайте Обявление' : 'Create Listing'}
+                  {t.listing.createListing}
                 </>)}
               </button>
             </div>

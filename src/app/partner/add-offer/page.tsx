@@ -131,13 +131,6 @@ export default function AddOfferPage() {
     }
   };
 
-  const t = (lang: string) => ({
-    accommodation: lang === 'sq' ? 'Akomodim' : lang === 'cs' ? 'Ubytování' : lang === 'bg' ? 'Настаняване' : 'Accommodation',
-    carRental: lang === 'sq' ? 'Makina me qera' : lang === 'cs' ? 'Autopůjčovna' : lang === 'bg' ? 'Автомобил под наем' : 'Car Rental',
-    excursion: lang === 'sq' ? 'Ekskursioni' : lang === 'cs' ? 'Výlet' : lang === 'bg' ? 'Екскурзия' : 'Excursion/ Tour',
-    transfer: lang === 'sq' ? 'Transfer' : lang === 'cs' ? 'Transfery' : lang === 'bg' ? 'Трансфер' : 'Transfer',
-  });
-
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="container mx-auto px-4 max-w-4xl">

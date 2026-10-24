@@ -134,7 +134,6 @@ const SUPPORTED_LANGUAGES: Language[] = [
   { code: 'en', name: 'English' },
   { code: 'sq', name: 'Shqip' },
   { code: 'sk', name: 'Slovenčina' },
-  { code: 'bg', name: 'Български', flag: '🇧🇬' },
 ];
 
 export interface LanguageContextType {

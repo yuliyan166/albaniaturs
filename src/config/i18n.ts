@@ -16,19 +16,19 @@ export const LANGUAGE_CONFIG: RouteLanguageConfig[] = [
   {
     // Public zone for tourists (Czech clients)
     pathPrefix: '/',
-    allowedLanguages: ['cs', 'en', 'sq', 'sk', 'bg'],
+    allowedLanguages: ['cs', 'sk', 'en', 'sq'],
     defaultLanguage: 'cs',
   },
   {
     // Zone for local partners (Albanian operators)
     pathPrefix: '/partner',
-    allowedLanguages: ['sq', 'en', 'cs', 'sk', 'bg'],
+    allowedLanguages: ['sq', 'en', 'cs', 'sk'],
     defaultLanguage: 'sq',
   },
   {
     // Administrative panel
     pathPrefix: '/admin',
-    allowedLanguages: ['cs', 'en', 'sq', 'sk', 'bg'],
+    allowedLanguages: ['cs', 'sk', 'en', 'sq'],
     defaultLanguage: 'cs',
   },
 ];

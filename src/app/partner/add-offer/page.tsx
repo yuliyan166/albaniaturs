@@ -161,22 +161,22 @@ export default function AddOfferPage() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">{t.listing.capacityLabel}</label>
-                 <div className="relative">
-                   <Star className="absolute left-3 top-3 text-gray-400" size={18} />
-                   <input type="number" required min={1} value={capacity || ''} onChange={(e) => setCapacity(Number(e.target.value))} placeholder="2" className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
-                 </div>
-                 <p className="text-xs text-gray-500 mt-1">{t.listing.maxGuests}</p>
+                <div className="relative">
+                  <Star className="absolute left-3 top-3 text-gray-400" size={18} />
+                  <input type="number" required min={1} value={capacity || ''} onChange={(e) => setCapacity(Number(e.target.value))} placeholder="2" className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
                 </div>
+                <p className="text-xs text-gray-500 mt-1">{t.listing.maxGuests}</p>
+              </div>
 
-                {(category === 'excursion' || category === 'transfer') && (
-                  <div className="md:col-span-3">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">{t.listing.departureTimes}</label>
-                    <div className="relative">
-                      <Clock className="absolute left-3 top-3 text-gray-400" size={18} />
-                      <input type="text" value={departure_times} onChange={(e) => setDepartureTimes(e.target.value)} placeholder="09:00, 12:00, 15:00" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
-                    </div>
+              {(category === 'excursion' || category === 'transfer') && (
+                <div className="md:col-span-3">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t.listing.departureTimes}</label>
+                  <div className="relative">
+                    <Clock className="absolute left-3 top-3 text-gray-400" size={18} />
+                    <input type="text" value={departure_times} onChange={(e) => setDepartureTimes(e.target.value)} placeholder="09:00, 12:00, 15:00" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
                   </div>
-                )}
+                </div>
+              )}
             </div>
           </section>
 
@@ -187,8 +187,8 @@ export default function AddOfferPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {image_urls.map((url, index) => (
                 <div key={index} className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">{language === 'cs' ? 'Obrázek' : language === 'sq' ? 'Imazhi' : language === 'bg' ? 'Снимка' : 'Image'} {index + 1}</label>
-                  <input type="file" accept="image/png, image/jpeg, image/webp" onChange={(e) => { const file = e.target.files?.[0]; if (file && file.size <= 5 * 1024 * 1024 && image_urls.length < 10) handleImageUpload(file, index); else if (file && file.size > 5 * 1024 * 1024) alert(language === 'cs' ? 'Soubor přesahuje 5 MB limit.' : language === 'sq' ? 'Skeda kalon më shumë se 5MB kufi.' : language === 'bg' ? 'Файлът надвишава ограничението от 5 МБ.' : 'File exceeds 5 MB limit.'); }} disabled={uploadingImages} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white" />
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{language === 'cs' ? 'Obrázek' : language === 'sq' ? 'Imazhi'} {index + 1}</label>
+                  <input type="file" accept="image/png, image/jpeg, image/webp" onChange={(e) => { const file = e.target.files?.[0]; if (file && file.size <= 5 * 1024 * 1024 && image_urls.length < 10) handleImageUpload(file, index); else if (file && file.size > 5 * 1024 * 1024) alert(language === 'cs' ? 'Soubor přesahuje 5 MB limit.' : language === 'sq' ? 'Skeda kalon më shumë se 5MB kufi.' : 'File exceeds 5 MB limit.'); }} disabled={uploadingImages} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white" />
                   {url && (
                     <div className="relative rounded-lg overflow-hidden">
                       <img src={url} alt={`Preview ${index + 1}`} className="w-full h-32 object-cover" />
@@ -201,9 +201,9 @@ export default function AddOfferPage() {
               {image_urls.length < 3 && (
                 <div className="flex items-end space-y-2">
                   <div className="w-full space-y-1">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">{language === 'cs' ? 'Nahrát Obrázek' : language === 'sq' ? 'Ngarko Imazhin' : language === 'bg' ? 'Качете снимка' : 'Upload Image'} ({image_urls.length + 1}/3)</label>
-                    <input type="file" accept="image/png, image/jpeg, image/webp" onChange={(e) => { const file = e.target.files?.[0]; if (file && file.size <= 5 * 1024 * 1024 && image_urls.length < 10) handleImageUpload(file, image_urls.length); else if (file && file.size > 5 * 1024 * 1024) alert(language === 'cs' ? 'Soubor přesahuje 5 MB limit.' : language === 'sq' ? 'Skeda kalon më shumë se 5MB kufi.' : language === 'bg' ? 'Файлът надвишава ограничението от 5 МБ.' : 'File exceeds 5 MB limit.'); }} disabled={uploadingImages} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white" />
-                    {uploadingImages && <div className="text-xs text-blue-600">{language === 'cs' ? 'Nahrávání...' : language === 'sq' ? 'Duke ngarkuar...' : language === 'bg' ? 'Качване...' : 'Uploading...'}</div>}
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{language === 'cs' ? 'Nahrát Obrázek' : language === 'sq' ? 'Ngarko Imazhin'} ({image_urls.length + 1}/3)</label>
+                    <input type="file" accept="image/png, image/jpeg, image/webp" onChange={(e) => { const file = e.target.files?.[0]; if (file && file.size <= 5 * 1024 * 1024 && image_urls.length < 10) handleImageUpload(file, image_urls.length); else if (file && file.size > 5 * 1024 * 1024) alert(language === 'cs' ? 'Soubor přesahuje 5 MB limit.' : language === 'sq' ? 'Skeda kalon më shumë se 5MB kufi.' : 'File exceeds 5 MB limit.'); }} disabled={uploadingImages} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white" />
+                    {uploadingImages && <div className="text-xs text-blue-600">{language === 'cs' ? 'Nahrávání...' : language === 'sq' ? 'Duke ngarkuar...'}</div>}
                   </div>
                 </div>
               )}
@@ -211,7 +211,7 @@ export default function AddOfferPage() {
 
             {/* Video Upload Field */}
             <div className="mt-6 pt-4 border-t">
-              <label className="block text-sm font-medium text-gray-700 mb-1">{language === 'cs' ? 'Video URL (MP4/WebM)' : language === 'sq' ? 'Video URL (MP4/WebM)' : language === 'bg' ? 'Видео URL (MP4/WebM)' : 'Video URL (MP4/WebM)'}</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{language === 'cs' ? 'Video URL (MP4/WebM)' : language === 'sq' ? 'URL Video (MP4/WebM)'}</label>
               <input type="url" value={video_url} onChange={(e) => setVideoUrl(e.target.value)} placeholder="https://example.com/video.mp4" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
               <p className="mt-1 text-xs text-gray-500">{t.listing.supportedFormats}</p>
             </div>

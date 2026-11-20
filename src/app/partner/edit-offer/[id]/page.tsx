@@ -21,10 +21,10 @@ export default function EditOfferPage() {
 
   // Translation helper for category options based on selected language
   const t = (lang: string) => ({
-    accommodation: lang === 'sq' ? 'Akomodim' : lang === 'cs' ? 'Ubytování' : lang === 'bg' ? 'Настаняване' : 'Accommodation',
-    carRental: lang === 'sq' ? 'Makina me qera' : lang === 'cs' ? 'Autopůjčovna' : lang === 'bg' ? 'Автомобил под наем' : 'Car Rental',
-    excursion: lang === 'sq' ? 'Ekskursioni' : lang === 'cs' ? 'Výlet' : lang === 'bg' ? 'Екскурзия' : 'Excursion/ Tour',
-    transfer: lang === 'sq' ? 'Transfer' : lang === 'cs' ? 'Transfery' : lang === 'bg' ? 'Трансфер' : 'Transfer',
+    accommodation: lang === 'sq' ? 'Akomodim' : lang === 'cs' ? 'Ubytování' : 'Accommodation',
+    carRental: lang === 'sq' ? 'Makina me qera' : lang === 'cs' ? 'Autopůjčovna' : 'Car Rental',
+    excursion: lang === 'sq' ? 'Ekskursioni' : lang === 'cs' ? 'Výlet' : 'Excursion/ Tour',
+    transfer: lang === 'sq' ? 'Transfer' : lang === 'cs' ? 'Transfery' : 'Transfer',
   });
 
   const id = params.id as string;
@@ -106,7 +106,7 @@ export default function EditOfferPage() {
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600">
-            {language === 'cs' ? 'Načítání inzerátu...' : language === 'sq' ? 'Duke ngarkuar ofertën...' : language === 'bg' ? 'Зареждане на обявлението...' : 'Loading listing...'}
+            {language === 'cs' ? 'Načítání inzerátu...' : language === 'sq' ? 'Duke ngarkuar ofertën...' : 'Loading listing...'}
           </p>
         </div>
       </div>

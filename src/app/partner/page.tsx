@@ -16,7 +16,7 @@ const PERIODS = [
 ];
 
 // Strict type for all translation entries - every key must have cs, en, sq, and bg
-type TranslationItem = Record<'cs' | 'en' | 'sq' | 'bg', string>;
+type TranslationItem = Record<'cs' | 'en' | 'sq', string>;
 
 // UI labels that can be internationalized
 const LABELS: Record<string, TranslationItem> = {
